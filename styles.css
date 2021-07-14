@@ -1,5 +1,58 @@
 .body {
-  font-family: "Courier New", Courier, monospace;
-  margin-left: 45;
-  margin-right: 45;
+  margin: 15px;
+  padding: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* text-align: center; */
+
+  display: flex;
+  /* font-family: "Courier New", Courier, monospace; */
+  /* margin-left: 45; */
+  /* margin-right: 45; */
+}
+
+.main-container {
+  /* text-align: center; */
+  /* flex-grow: 1; */
+  /* max-width: 600px; */
+}
+
+.title-container {
+  text-align: left;
+  margin-bottom: 40px;
+}
+.title-1 {
+  font-size: 32;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.title-2 {
+  font-size: 24;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.link-container {
+  text-align: center;
+  border: 1px solid;
+  box-shadow: 5px 5px black;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* cursor: pointer; */
+  transition: background-color 250ms;
+}
+
+.link-container a {
+  font-style: normal;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.link-container a:hover {
+  color: blue;
+}
+
+.link-container:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
