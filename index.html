@@ -1,70 +1,23 @@
 <head>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css"
+    integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l"
+    crossorigin="anonymous"
+  />
+  <script
+    crossorigin
+    src="https://unpkg.com/react@17/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
   <link rel="stylesheet" href="styles.css" />
-  <script src="myScript.js"></script>
+  <script type="text/babel" src="app.jsx"></script>
 </head>
 <body>
-  <div class="body">
-    <div class="main-container">
-      <div class="title-container">
-        <div class="title-1">Michael Sweeney</div>
-        <div class="title-2">LEED AP, BEMP</div>
-        <div class="title-3">Coding, Data, Building Energy Science</div>
-      </div>
-
-      <div class="br"></div>
-
-      <!-- <div class="header-md">Selected Work</div> -->
-
-      <div
-        class="link-container"
-        onclick="linkClick('https://www.dropbox.com/s/kydr3esaexbe1um/MS%20Resume.pdf?dl=1')"
-      >
-        Resume (PDF download)
-      </div>
-      <div
-        class="link-container"
-        onclick="linkClick('https:be-exchange.org/calculator')"
-      >
-        NYC LL97 Carbon Calculator
-      </div>
-      <div
-        class="link-container"
-        onclick="linkClick('https://michaelsweeney.github.io/timestep')"
-      >
-        Timestep
-      </div>
-      <div
-        class="link-container"
-        onclick="linkClick('https://github.com/michaelsweeney/eqparse')"
-      >
-        eqparse (python repo)
-      </div>
-      <div
-        class="link-container"
-        onclick="linkClick('https://github.com/michaelsweeney/nyserdaproptech')"
-      >
-        NYSERDA PropTech Challenge
-      </div>
-
-      <div class="br"></div>
-
-      <div class="link-container-multi">
-        <div class="link-sm">
-          <a target="_blank" href="mailto:michael.samuel.sweeney@gmail.com"
-            >email</a
-          >
-        </div>
-        <div class="link-sm">
-          <a target="_blank" href="https://www.linkedin.com/in/msweeney01/"
-            >linkedin</a
-          >
-        </div>
-        <div class="link-sm">
-          <a target="_blank" href="https://github.com/michaelsweeney">github</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="root"></div>
 </body>
