@@ -1,6 +1,8 @@
 const colors = {
   primary: "#003f5c",
-  secondary: "#bc5090",
+  secondary: "#58508d",
+  gray: "rgba(0,0,0,0.7)",
+  white: "rgba(255,255,255)",
 };
 
 // others
@@ -10,44 +12,148 @@ const colors = {
 // #ff6361
 // #ffa600
 
-const CardContainer = (props) => {
-  const { title, url } = props;
+const styles = {
+  main: {
+    fontFamily: "arial",
+    margin: "10 40 10 40",
+    padding: "10 40 10 40",
+  },
+  headerContainer: {
+    margin: "0 0 40 0",
+  },
+  title1: {
+    fontSize: "42px",
+    fontFamily: "Montserrat-Bold",
+    margin: "15 0 15 0",
+    letterSpacing: 4,
+    color: colors.primary,
+  },
+  title2: {
+    fontFamily: "Arial",
+    fontSize: 24,
+    letterSpacing: 2,
+    margin: "0 0 15 0",
+    color: colors.gray,
+  },
+  title3: {
+    fontFamily: "Montserrat-Bold",
+    fontSize: 18,
+    margin: "10 0 10 0",
+    color: colors.primary,
+  },
+  card: {
+    border: "1px solid",
+    padding: 15,
+    margin: "10 0 10 0",
+    cursor: "pointer",
+    transition: "background-color 250ms, color 250ms",
+  },
+  cardHover: {
+    backgroundColor: colors.secondary,
+    color: colors.white,
+  },
+  linkText: {
+    display: "inline-block",
+    textDecoration: "none",
+    color: colors.gray,
+    cursor: "pointer",
+    padding: "10 10 10 10",
+    transition: "background-color 250ms, color 250ms",
+  },
+  linkTextHover: {
+    backgroundColor: colors.secondary,
+    color: colors.white,
+  },
+  aboutContainer: {
+    margin: "0 0 30 0",
+  },
+  projectsContainer: {
+    margin: "0 0 30 0",
+  },
+  contactContainer: {
+    margin: "0 0 30 0",
+  },
+};
+
+const About = () => {
+  const copy =
+    "Building data scientist, energy modeler and software enthusiast with 14 years of \
+    experience in the built environment. Proficient in multiple programming languages \
+    and modeling engines. Passionate about Python, open-source code, energy modeling, \
+    RTEM, and using data and modeling to communicate difficult problems to non-technical \
+    audiences.";
   return (
-    <div className="link-container" onClick={() => window.open(url)}>
+    <div style={styles.aboutContainer}>
+      <div style={styles.title3}>ABOUT ME</div>
+      <div>{copy}</div>
+    </div>
+  );
+};
+
+const Card = (props) => {
+  const { title, url } = props;
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  return (
+    <div
+      onMouseMove={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={isHovered ? { ...styles.card, ...styles.cardHover } : styles.card}
+      onClick={() => window.open(url)}
+    >
       {title}
     </div>
   );
 };
 
-const Footer = () => {
+const Link = (props) => {
+  const { title, url } = props;
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  return (
+    <div
+      onMouseMove={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={
+        isHovered
+          ? { ...styles.linkText, ...styles.linkTextHover }
+          : styles.linkText
+      }
+      onClick={() => window.open(url)}
+    >
+      {title}
+    </div>
+  );
+};
+
+const Contact = () => {
   const links = [
     {
-      text: "github",
-      url: "https://github.com/michaelsweeney",
+      text: "Resume",
+      href: "https://www.dropbox.com/s/kydr3esaexbe1um/MS%20Resume.pdf?dl=1",
     },
     {
-      text: "email",
+      text: "Github",
+      href: "https://github.com/michaelsweeney",
+    },
+    {
+      text: "Email",
       href: "mailto:michael.samuel.sweeney@gmail.com",
     },
     {
-      text: "",
-      href: "",
-    },
-    {
-      text: "linkedin",
+      text: "LinkedIn",
       href: "https://www.linkedin.com/in/msweeney01/",
     },
   ];
 
   return (
-    <div className="footer">
-      Contact
-      <div className="contact-container">
+    <div style={styles.contactContainer}>
+      <div style={styles.title3}>CONTACT ME</div>
+
+      <div>
         {links.map((d, i) => (
-          <div key={i} className="link-sm" target="_blank">
-            <a target="_blank" href={d.href}>
-              {d.text}
-            </a>
+          <div key={i}>
+            <Link key={i} title={d.text} url={d.href} />
           </div>
         ))}
       </div>
@@ -56,38 +162,6 @@ const Footer = () => {
 };
 
 const Header = () => {
-  const styles = {
-    headerContainer: {
-      padding: 20,
-      marginTop: 10,
-      marginBottom: 20,
-      marginLeft: 10,
-      marginRight: 10,
-    },
-    title1: {
-      fontSize: "42px",
-      fontFamily: "Montserrat-Bold",
-      marginBottom: 15,
-      marginTop: 15,
-      letterSpacing: 8,
-      color: colors.primary,
-    },
-    title2: {
-      fontFamily: "Arial",
-      fontSize: 24,
-      letterSpacing: 5,
-      marginBottom: 15,
-      color: colors.secondary,
-    },
-    title3: {
-      fontFamily: "Arial",
-      fontSize: 20,
-      letterSpacing: 1.5,
-      marginTop: 10,
-      marginBottom: 10,
-      color: colors.secondary,
-    },
-  };
   return (
     <div style={styles.headerContainer}>
       <div className="header-left">
@@ -99,47 +173,58 @@ const Header = () => {
   );
 };
 
-const Body = (props) => {
-  const { cards } = props;
+const ProjectsContainer = () => {
+  const projects = [
+    {
+      title: "NYC LL97 Carbon Calculator",
+      url: "https://be-exchange.org/calculator",
+      description: "",
+      image: "",
+    },
+    {
+      title: "DesignBuilder EMS Case Study",
+      url: "https://designbuilder.co.uk/casestudies/AKFCaseStudy.pdf",
+      description: "",
+      image: "",
+    },
+    {
+      title: "NYSERDA PropTech Tenant Energy Challenge",
+      url: "https://github.com/michaelsweeney/nyserdaproptech",
+      description: "",
+      image: "",
+    },
+    {
+      title: "eqparse",
+      url: "https://github.com/michaelsweeney/eqparse",
+      description: "",
+      image: "",
+    },
+    {
+      title: "timestep",
+      url: "https://michaelsweeney.github.io/timestep",
+      description: "",
+      image: "",
+    },
+  ];
   return (
-    <div>
-      {cards.map((d, i) => (
-        <CardContainer key={i} title={d.title} url={d.url} />
-      ))}
+    <div style={styles.projectsContainer}>
+      <div style={styles.title3}>SELECTED PROJECTS</div>
+      <div>
+        {projects.map((d, i) => (
+          <Card key={i} title={d.title} url={d.url} />
+        ))}
+      </div>
     </div>
   );
 };
 
 const App = () => {
-  const cards = [
-    {
-      title: "Resume (PDF download)",
-      url: "https://www.dropbox.com/s/kydr3esaexbe1um/MS%20Resume.pdf?dl=1",
-    },
-    {
-      title: "NYC LL97 Carbon Calculator",
-      url: "https://be-exchange.org/calculator",
-    },
-    {
-      title: "NYSERDA PropTech Tenant Energy Challenge",
-      url: "https://github.com/michaelsweeney/nyserdaproptech",
-    },
-    {
-      title: "eqparse",
-      url: "https://github.com/michaelsweeney/eqparse",
-    },
-    {
-      title: "timestep",
-      url: "https://michaelsweeney.github.io/timestep",
-    },
-  ];
-
   return (
-    <div className="main-container">
+    <div style={styles.main}>
       <Header />
-      <Body cards={cards} />
-
-      <Footer />
+      <About />
+      <ProjectsContainer />
+      <Contact />
     </div>
   );
 };
