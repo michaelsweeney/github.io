@@ -1,4 +1,9 @@
-const LinkContainer = (props) => {
+const colors = {
+  black: "rgba(0,0,0,0.9)",
+  gray: "rgba(0,0,0,0.5)",
+};
+
+const CardContainer = (props) => {
   const { title, url } = props;
   return (
     <div className="link-container" onClick={() => window.open(url)}>
@@ -7,59 +12,127 @@ const LinkContainer = (props) => {
   );
 };
 
-const App = () => {
+const Footer = () => {
+  const links = [
+    {
+      text: "github",
+      url: "https://github.com/michaelsweeney",
+    },
+    {
+      text: "email",
+      href: "mailto:michael.samuel.sweeney@gmail.com",
+    },
+    {
+      text: "",
+      href: "",
+    },
+    {
+      text: "linkedin",
+      href: "https://www.linkedin.com/in/msweeney01/",
+    },
+  ];
+
   return (
-    <div className="body">
-      <div className="main-container">
-        <div className="title-container">
-          <div className="title-1">Michael Sweeney</div>
-          <div className="title-2">Coding, Data, Building Energy Science</div>
-        </div>
-
-        <div className="br"></div>
-
-        <LinkContainer
-          title="Resume (PDF download)"
-          url="https://www.dropbox.com/s/kydr3esaexbe1um/MS%20Resume.pdf?dl=1"
-        />
-        <LinkContainer
-          url="https://be-exchange.org/calculator"
-          title="NYC LL97 Carbon Calculator"
-        />
-
-        <LinkContainer
-          url="https://michaelsweeney.github.io/timestep"
-          title="timestep"
-        />
-        <LinkContainer
-          url="https://github.com/michaelsweeney/eqparse"
-          title="eqparse"
-        />
-        <LinkContainer
-          url="https://github.com/michaelsweeney/nyserdaproptech"
-          title="NYSERDA PropTech Tenant Energy Challenge"
-        />
-
-        <div className="br"></div>
-
-        <div className="link-container-multi">
-          <div className="link-sm">
-            <a target="_blank" href="mailto:michael.samuel.sweeney@gmail.com">
-              email
+    <div className="footer">
+      Contact
+      <div className="contact-container">
+        {links.map((d, i) => (
+          <div key={i} className="link-sm" target="_blank">
+            <a target="_blank" href={d.href}>
+              {d.text}
             </a>
           </div>
-          <div className="link-sm">
-            <a target="_blank" href="https://www.linkedin.com/in/msweeney01/">
-              linkedin
-            </a>
-          </div>
-          <div className="link-sm">
-            <a target="_blank" href="https://github.com/michaelsweeney">
-              github
-            </a>
-          </div>
-        </div>
+        ))}
       </div>
+    </div>
+  );
+};
+
+const Header = () => {
+  const styles = {
+    headerContainer: {
+      padding: 20,
+      marginTop: 10,
+      marginBottom: 20,
+      marginLeft: 10,
+      marginRight: 10,
+    },
+    title1: {
+      fontSize: "42px",
+      fontFamily: "Montserrat-Bold",
+      marginBottom: 15,
+      marginTop: 15,
+      letterSpacing: 8,
+      color: colors.black,
+    },
+    title2: {
+      fontFamily: "Arial",
+      fontSize: 24,
+      letterSpacing: 5,
+      marginBottom: 15,
+      color: colors.gray,
+    },
+    title3: {
+      fontFamily: "Arial",
+      fontSize: 20,
+      letterSpacing: 1.5,
+      marginTop: 10,
+      marginBottom: 10,
+      color: colors.gray,
+    },
+  };
+  return (
+    <div style={styles.headerContainer}>
+      <div className="header-left">
+        <div style={styles.title1}>MICHAEL SWEENEY</div>
+        <div style={styles.title3}>building energy / coding / data </div>
+      </div>
+      <div className="header-right"></div>
+    </div>
+  );
+};
+
+const Body = (props) => {
+  const { cards } = props;
+  return (
+    <div>
+      {cards.map((d, i) => (
+        <CardContainer key={i} title={d.title} url={d.url} />
+      ))}
+    </div>
+  );
+};
+
+const App = () => {
+  const cards = [
+    {
+      title: "Resume (PDF download)",
+      url: "https://www.dropbox.com/s/kydr3esaexbe1um/MS%20Resume.pdf?dl=1",
+    },
+    {
+      title: "NYC LL97 Carbon Calculator",
+      url: "https://be-exchange.org/calculator",
+    },
+    {
+      title: "NYSERDA PropTech Tenant Energy Challenge",
+      url: "https://github.com/michaelsweeney/nyserdaproptech",
+    },
+    {
+      title: "eqparse",
+      url: "https://github.com/michaelsweeney/eqparse",
+    },
+    {
+      title: "timestep",
+      url: "https://michaelsweeney.github.io/timestep",
+    },
+  ];
+
+  return (
+    <div className="main-container">
+      <Header />
+      <Body cards={cards} />
+
+      <Footer />
     </div>
   );
 };
