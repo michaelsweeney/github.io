@@ -21,6 +21,12 @@ const styles = {
   headerContainer: {
     margin: "0 0 40 0",
   },
+  headerLeft: {
+    display: "inline-block",
+  },
+  headerRight: {
+    display: "inline-block",
+  },
   title1: {
     fontSize: "42px",
     fontFamily: "Montserrat-Bold",
@@ -42,7 +48,7 @@ const styles = {
     color: colors.primary,
   },
   card: {
-    border: "1px solid",
+    border: `1px solid ${colors.gray}`,
     padding: 15,
     margin: "10 0 10 0",
     cursor: "pointer",
@@ -51,6 +57,14 @@ const styles = {
   cardHover: {
     backgroundColor: colors.secondary,
     color: colors.white,
+  },
+  cardTitle: {
+    fontWeight: 800,
+    fontSize: 18,
+    margin: "10 0 10 0",
+  },
+  cardDescription: {
+    margin: "10 0 10 0",
   },
   linkText: {
     display: "inline-block",
@@ -73,6 +87,10 @@ const styles = {
   contactContainer: {
     margin: "0 0 30 0",
   },
+
+  cardsContainer: {
+    // display: "flex",
+  },
 };
 
 const About = () => {
@@ -91,7 +109,7 @@ const About = () => {
 };
 
 const Card = (props) => {
-  const { title, url } = props;
+  const { title, url, description, image } = props;
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
@@ -101,7 +119,8 @@ const Card = (props) => {
       style={isHovered ? { ...styles.card, ...styles.cardHover } : styles.card}
       onClick={() => window.open(url)}
     >
-      {title}
+      <div style={styles.cardTitle}>{title}</div>
+      <div style={styles.cardDescription}>{description}</div>
     </div>
   );
 };
@@ -164,11 +183,15 @@ const Contact = () => {
 const Header = () => {
   return (
     <div style={styles.headerContainer}>
-      <div className="header-left">
+      <div style={styles.headerLeft}>
         <div style={styles.title1}>MICHAEL SWEENEY</div>
         <div style={styles.title2}>building energy / coding / data </div>
       </div>
-      <div className="header-right"></div>
+      <div style={styles.headerRight}>
+        <div>About</div>
+        <div>Work</div>
+        <div>Contact</div>
+      </div>
     </div>
   );
 };
@@ -178,40 +201,59 @@ const ProjectsContainer = () => {
     {
       title: "NYC LL97 Carbon Calculator",
       url: "https://be-exchange.org/calculator",
-      description: "",
+      description:
+        "Interactive online visualization tool \
+      to calculate building fines for NYC Local Law 97.\
+      Developed with support from the Building Energy \
+      Exchange and the NYC Mayor's Office of Sustainability.",
       image: "",
     },
     {
       title: "DesignBuilder EMS Case Study",
       url: "https://designbuilder.co.uk/casestudies/AKFCaseStudy.pdf",
-      description: "",
+      description:
+        "Low-Temperatue Chilled Water Plant Controls Optimization \
+        Study.",
       image: "",
     },
     {
       title: "NYSERDA PropTech Tenant Energy Challenge",
       url: "https://github.com/michaelsweeney/nyserdaproptech",
-      description: "",
+      description:
+        "Developed a Machine Learning algorithm to predict \
+        changes in tenant energy consumption changes due to the \
+        COVID-19 pandemic",
       image: "",
     },
     {
       title: "eqparse",
       url: "https://github.com/michaelsweeney/eqparse",
-      description: "",
+      description:
+        "Pandas-based API for accessing and transforming \
+      eQUEST simulations outputs",
       image: "",
     },
     {
       title: "timestep",
       url: "https://michaelsweeney.github.io/timestep",
-      description: "",
+      description:
+        "Front-end Electron-based desktop \
+      application for visualizing EnergyPlus simulation \
+      outputs",
       image: "",
     },
   ];
   return (
     <div style={styles.projectsContainer}>
       <div style={styles.title3}>SELECTED PROJECTS</div>
-      <div>
+      <div style={styles.cardsContainer}>
         {projects.map((d, i) => (
-          <Card key={i} title={d.title} url={d.url} />
+          <Card
+            key={i}
+            title={d.title}
+            url={d.url}
+            description={d.description}
+          />
         ))}
       </div>
     </div>
