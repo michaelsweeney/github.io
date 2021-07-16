@@ -1,6 +1,6 @@
 const colors = {
-  black: "rgba(0,0,0,0.9)",
-  gray: "rgba(0,0,0,0.5)",
+  primary: "#003f5c",
+  secondary: "#bc5090",
 };
 
 const CardContainer = (props) => {
@@ -63,14 +63,14 @@ const Header = () => {
       marginBottom: 15,
       marginTop: 15,
       letterSpacing: 8,
-      color: colors.black,
+      color: colors.primary,
     },
     title2: {
       fontFamily: "Arial",
       fontSize: 24,
       letterSpacing: 5,
       marginBottom: 15,
-      color: colors.gray,
+      color: colors.secondary,
     },
     title3: {
       fontFamily: "Arial",
@@ -78,14 +78,14 @@ const Header = () => {
       letterSpacing: 1.5,
       marginTop: 10,
       marginBottom: 10,
-      color: colors.gray,
+      color: colors.secondary,
     },
   };
   return (
     <div style={styles.headerContainer}>
       <div className="header-left">
         <div style={styles.title1}>MICHAEL SWEENEY</div>
-        <div style={styles.title3}>building energy / coding / data </div>
+        <div style={styles.title2}>building energy / coding / data </div>
       </div>
       <div className="header-right"></div>
     </div>
