@@ -3,6 +3,13 @@ const colors = {
   secondary: "#bc5090",
 };
 
+// others
+// #003f5c
+// #58508d
+// #bc5090
+// #ff6361
+// #ffa600
+
 const CardContainer = (props) => {
   const { title, url } = props;
   return (
