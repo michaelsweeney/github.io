@@ -62,7 +62,7 @@ const makeStyles = (props) => {
       color: colors.primary,
     },
     title1: {
-      fontSize: isMedium ? "42px" : "24px",
+      fontSize: isMedium ? "42px" : "30px",
       fontFamily: "Montserrat-Bold, sans-serif",
       margin: isMedium ? "15 0 15 0" : "10 0 20 0",
       letterSpacing: isMedium ? 4 : 2,
