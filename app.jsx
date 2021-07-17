@@ -154,6 +154,12 @@ const makeStyles = (props) => {
       textAlign: isSmall ? "center" : "center",
     },
     cardsContainer: {},
+    headshotContainer: {
+      display: "none",
+      textAlign: "center",
+      alignItems: "center",
+      width: 200,
+    },
   };
 };
 
@@ -169,6 +175,9 @@ const About = (props) => {
     <div style={styles.aboutContainer}>
       <div style={styles.title3}>ABOUT ME</div>
       <div>{copy}</div>
+      <div style={styles.headshotContainer}>
+        <img width="100%" src="./public/images/headshot.JPG"></img>
+      </div>
     </div>
   );
 };
