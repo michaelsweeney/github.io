@@ -1,3 +1,15 @@
+const useMediaQuery = (query) => {
+  const mediaMatch = window.matchMedia(query);
+  const [matches, setMatches] = React.useState(mediaMatch.matches);
+
+  React.useEffect(() => {
+    const handler = (e) => setMatches(e.matches);
+    mediaMatch.addListener(handler);
+    return () => mediaMatch.removeListener(handler);
+  });
+  return matches;
+};
+
 const colors = {
   primary: "#003f5c",
   secondary: "#58508d",
@@ -12,88 +24,127 @@ const colors = {
 // #ff6361
 // #ffa600
 
-const styles = {
-  main: {
-    fontFamily: "arial",
-    margin: "10 40 10 40",
-    padding: "10 40 10 40",
-  },
-  headerContainer: {
-    margin: "0 0 40 0",
-  },
-  headerLeft: {
-    display: "inline-block",
-  },
-  headerRight: {
-    display: "inline-block",
-  },
-  title1: {
-    fontSize: "42px",
-    fontFamily: "Montserrat-Bold",
-    margin: "15 0 15 0",
-    letterSpacing: 4,
-    color: colors.primary,
-  },
-  title2: {
-    fontFamily: "Arial",
-    fontSize: 24,
-    letterSpacing: 2,
-    margin: "0 0 15 0",
-    color: colors.gray,
-  },
-  title3: {
-    fontFamily: "Montserrat-Bold",
-    fontSize: 18,
-    margin: "10 0 10 0",
-    color: colors.primary,
-  },
-  card: {
-    border: `1px solid ${colors.gray}`,
-    padding: 15,
-    margin: "10 0 10 0",
-    cursor: "pointer",
-    transition: "background-color 250ms, color 250ms",
-  },
-  cardHover: {
-    backgroundColor: colors.secondary,
-    color: colors.white,
-  },
-  cardTitle: {
-    fontWeight: 800,
-    fontSize: 18,
-    margin: "10 0 10 0",
-  },
-  cardDescription: {
-    margin: "10 0 10 0",
-  },
-  linkText: {
-    display: "inline-block",
-    textDecoration: "none",
-    color: colors.gray,
-    cursor: "pointer",
-    padding: "10 10 10 10",
-    transition: "background-color 250ms, color 250ms",
-  },
-  linkTextHover: {
-    backgroundColor: colors.secondary,
-    color: colors.white,
-  },
-  aboutContainer: {
-    margin: "0 0 30 0",
-  },
-  projectsContainer: {
-    margin: "0 0 30 0",
-  },
-  contactContainer: {
-    margin: "0 0 30 0",
-  },
-
-  cardsContainer: {
-    // display: "flex",
-  },
+const makeStyles = (props) => {
+  const { isSmall, isMedium, activeNav } = props;
+  return {
+    main: {
+      fontFamily: "arial",
+      margin: "10 40 10 40",
+      padding: "10 40 10 40",
+      lineHeight: 1.5,
+    },
+    headerContainer: {
+      margin: "0 0 40 0",
+      display: "block",
+      boxSizing: "border-box",
+      textAlign: isMedium ? "left" : "center",
+    },
+    headerLeft: {
+      display: "inline-block",
+      width: isMedium ? "calc(100% - 80px)" : "100%",
+    },
+    headerRight: {
+      textAlign: isMedium ? "right" : "center",
+      verticalAlign: "top",
+      position: "relative",
+      top: isMedium ? 25 : 0,
+      display: "inline-block",
+      width: "80px",
+      color: colors.primary,
+    },
+    title1: {
+      fontSize: "42px",
+      fontFamily: "Montserrat-Bold",
+      margin: "15 0 15 0",
+      letterSpacing: 4,
+      color: colors.primary,
+    },
+    title2: {
+      display: isSmall ? "none" : "inline-block",
+      fontFamily: "Arial",
+      fontSize: 24,
+      letterSpacing: 2,
+      margin: "0 0 15 0",
+      color: colors.gray,
+    },
+    title3: {
+      fontFamily: "Montserrat-Bold",
+      fontSize: 18,
+      margin: "10 0 10 0",
+      color: colors.primary,
+    },
+    card: {
+      border: `1px solid ${colors.gray}`,
+      padding: 15,
+      margin: "10 0 10 0",
+      cursor: "pointer",
+      transition: "background-color 250ms, color 250ms",
+    },
+    cardHover: {
+      backgroundColor: colors.secondary,
+      color: colors.white,
+    },
+    cardTitle: {
+      fontWeight: 800,
+      fontSize: 18,
+      margin: "10 0 10 0",
+    },
+    cardDescription: {
+      margin: "10 0 10 0",
+    },
+    linkText: {
+      display: "inline-block",
+      textDecoration: "none",
+      color: colors.gray,
+      cursor: "pointer",
+      padding: "10 10 10 10",
+      transition: "background-color 250ms, color 250ms",
+    },
+    linkTextHover: {
+      backgroundColor: colors.secondary,
+      color: colors.white,
+    },
+    navText: {
+      display: "inline-block",
+      textDecoration: "none",
+      color: colors.gray,
+      cursor: "pointer",
+      margin: "5 5 5 5",
+      padding: "10 10 10 10",
+      transition: "background-color 250ms, color 250ms",
+    },
+    navTextHover: {
+      backgroundColor: colors.primary,
+      color: colors.white,
+    },
+    navTextActive: {
+      backgroundColor: colors.primary,
+      color: "white",
+    },
+    navTextActiveHover: {
+      backgroundColor: "blue",
+    },
+    aboutContainer: {
+      display: activeNav == "about" ? "block" : "none",
+      margin: "0 0 30 0",
+    },
+    projectsContainer: {
+      display: activeNav == "work" ? "block" : "none",
+      margin: "0 0 30 0",
+    },
+    contactContainer: {
+      display: activeNav == "contact" ? "block" : "none",
+      margin: "0 0 30 0",
+    },
+    contactLinksContainer: {
+      textAlign: isSmall ? "center" : "left",
+    },
+    cardsContainer: {},
+  };
 };
 
-const About = () => {
+const About = (props) => {
+  const { styles } = props;
   const copy =
     "Building data scientist, energy modeler and software enthusiast with 14 years of \
     experience in the built environment. Proficient in multiple programming languages \
@@ -109,6 +160,8 @@ const About = () => {
 };
 
 const Card = (props) => {
+  const { styles } = props;
+
   const { title, url, description, image } = props;
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -126,9 +179,9 @@ const Card = (props) => {
 };
 
 const Link = (props) => {
+  const { styles } = props;
   const { title, url } = props;
   const [isHovered, setIsHovered] = React.useState(false);
-
   return (
     <div
       onMouseMove={() => setIsHovered(true)}
@@ -145,7 +198,56 @@ const Link = (props) => {
   );
 };
 
-const Contact = () => {
+const Nav = (props) => {
+  const { callback, title, id, styles, activeNav } = props;
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  const isActiveNav = activeNav == id ? true : false;
+  const getNavState = () => {
+    if (isHovered && isActiveNav) {
+      return {
+        ...styles.navText,
+        ...styles.navTextActiveHover,
+        ...styles.navTextActive,
+      };
+    }
+    if (isHovered && !isActiveNav) {
+      return {
+        ...styles.navText,
+        ...styles.navTextHover,
+      };
+    }
+
+    if (!isHovered && isActiveNav) {
+      return {
+        ...styles.navText,
+        ...styles.navTextActive,
+      };
+    }
+
+    if (!isHovered && !isActiveNav) {
+      return {
+        ...styles.navText,
+      };
+    }
+  };
+
+  const navStyles = getNavState();
+
+  return (
+    <div
+      onMouseMove={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={navStyles}
+      onClick={() => callback(id)}
+    >
+      {title}
+    </div>
+  );
+};
+
+const Contact = (props) => {
+  const { styles } = props;
   const links = [
     {
       text: "Resume",
@@ -169,10 +271,10 @@ const Contact = () => {
     <div style={styles.contactContainer}>
       <div style={styles.title3}>CONTACT ME</div>
 
-      <div>
+      <div style={styles.contactLinksContainer}>
         {links.map((d, i) => (
           <div key={i}>
-            <Link key={i} title={d.text} url={d.href} />
+            <Link styles={styles} key={i} title={d.text} url={d.href} />
           </div>
         ))}
       </div>
@@ -180,7 +282,8 @@ const Contact = () => {
   );
 };
 
-const Header = () => {
+const Header = (props) => {
+  const { styles, callback, activeNav } = props;
   return (
     <div style={styles.headerContainer}>
       <div style={styles.headerLeft}>
@@ -188,15 +291,35 @@ const Header = () => {
         <div style={styles.title2}>building energy / coding / data </div>
       </div>
       <div style={styles.headerRight}>
-        <div>About</div>
-        <div>Work</div>
-        <div>Contact</div>
+        <Nav
+          activeNav={activeNav}
+          callback={callback}
+          styles={styles}
+          id="about"
+          title="About"
+        />
+        <Nav
+          activeNav={activeNav}
+          callback={callback}
+          styles={styles}
+          id="work"
+          title="Work"
+        />
+        <Nav
+          activeNav={activeNav}
+          callback={callback}
+          styles={styles}
+          id="contact"
+          title="Contact"
+        />
       </div>
     </div>
   );
 };
 
-const ProjectsContainer = () => {
+const ProjectsContainer = (props) => {
+  const { styles } = props;
+
   const projects = [
     {
       title: "NYC LL97 Carbon Calculator",
@@ -237,8 +360,8 @@ const ProjectsContainer = () => {
       title: "timestep",
       url: "https://michaelsweeney.github.io/timestep",
       description:
-        "Front-end Electron-based desktop \
-      application for visualizing EnergyPlus simulation \
+        "Front-end, cross-platform desktop \
+      app for visualizing EnergyPlus simulation \
       outputs",
       image: "",
     },
@@ -249,6 +372,7 @@ const ProjectsContainer = () => {
       <div style={styles.cardsContainer}>
         {projects.map((d, i) => (
           <Card
+            styles={styles}
             key={i}
             title={d.title}
             url={d.url}
@@ -261,12 +385,20 @@ const ProjectsContainer = () => {
 };
 
 const App = () => {
+  const breakpoint = 650;
+  const isSmall = useMediaQuery(`screen and (max-width: ${breakpoint}px)`);
+  const isMedium = useMediaQuery(`screen and (min-width: ${breakpoint}px)`);
+
+  const [activeNav, setActiveNav] = React.useState("about");
+
+  const styles = makeStyles({ isSmall, isMedium, activeNav });
+
   return (
     <div style={styles.main}>
-      <Header />
-      <About />
-      <ProjectsContainer />
-      <Contact />
+      <Header callback={setActiveNav} activeNav={activeNav} styles={styles} />
+      <About styles={styles} />
+      <ProjectsContainer styles={styles} />
+      <Contact styles={styles} />
     </div>
   );
 };
