@@ -11,7 +11,8 @@ const useMediaQuery = (query) => {
 };
 
 const colors = {
-  primary: "#003f5c",
+  primary: "rgba(0,63,92,1)",
+  primaryLight: "rgba(0,63,92,0.1)",
   secondary: "#58508d",
   gray: "rgba(0,0,0,0.7)",
   white: "rgba(255,255,255)",
@@ -27,10 +28,16 @@ const colors = {
 const makeStyles = (props) => {
   const { isSmall, isMedium, activeNav } = props;
   return {
-    main: {
+    mainOuter: {
+      textAlign: "center",
+    },
+    mainInner: {
+      textAlign: "left",
+      display: "inline-block",
+      maxWidth: 900,
+      width: "calc(100% - 40px)",
       fontFamily: "arial",
-      margin: "10 40 10 40",
-      padding: "10 40 10 40",
+      margin: "20 20 20 20",
       lineHeight: 1.5,
     },
     headerContainer: {
@@ -53,10 +60,10 @@ const makeStyles = (props) => {
       color: colors.primary,
     },
     title1: {
-      fontSize: "42px",
-      fontFamily: "Montserrat-Bold",
+      fontSize: isMedium ? "42px" : "36px",
+      fontFamily: "Montserrat-Bold, sans-serif",
       margin: "15 0 15 0",
-      letterSpacing: 4,
+      letterSpacing: isMedium ? 4 : 2,
       color: colors.primary,
     },
     title2: {
@@ -68,7 +75,7 @@ const makeStyles = (props) => {
       color: colors.gray,
     },
     title3: {
-      fontFamily: "Montserrat-Bold",
+      fontFamily: "Montserrat-Bold, sans-serif",
       fontSize: 18,
       margin: "10 0 10 0",
       color: colors.primary,
@@ -81,8 +88,8 @@ const makeStyles = (props) => {
       transition: "background-color 250ms, color 250ms",
     },
     cardHover: {
-      backgroundColor: colors.secondary,
-      color: colors.white,
+      backgroundColor: colors.primaryLight,
+      color: colors.black,
     },
     cardTitle: {
       fontWeight: 800,
@@ -98,24 +105,23 @@ const makeStyles = (props) => {
       color: colors.gray,
       cursor: "pointer",
       padding: "10 10 10 10",
-      transition: "background-color 250ms, color 250ms",
+      transition: "background-color 250ms, color 250ms, font-weight 250ms",
     },
     linkTextHover: {
-      backgroundColor: colors.secondary,
-      color: colors.white,
+      color: colors.primary,
+      textDecoration: "underline",
     },
     navText: {
       display: "inline-block",
-      textDecoration: "none",
       color: colors.gray,
       cursor: "pointer",
-      margin: "5 5 5 5",
-      padding: "10 10 10 10",
+      margin: isMedium ? "0 0 0 0 " : "0 0 0 0",
+      padding: isMedium ? "10 10 10 10" : "10 10 10 10",
       transition: "background-color 250ms, color 250ms",
     },
     navTextHover: {
-      backgroundColor: colors.primary,
-      color: colors.white,
+      backgroundColor: colors.primaryLight,
+      // color: colors.white,
     },
     navTextActive: {
       backgroundColor: colors.primary,
@@ -394,11 +400,13 @@ const App = () => {
   const styles = makeStyles({ isSmall, isMedium, activeNav });
 
   return (
-    <div style={styles.main}>
-      <Header callback={setActiveNav} activeNav={activeNav} styles={styles} />
-      <About styles={styles} />
-      <ProjectsContainer styles={styles} />
-      <Contact styles={styles} />
+    <div style={styles.mainOuter}>
+      <div style={styles.mainInner}>
+        <Header callback={setActiveNav} activeNav={activeNav} styles={styles} />
+        <About styles={styles} />
+        <ProjectsContainer styles={styles} />
+        <Contact styles={styles} />
+      </div>
     </div>
   );
 };
