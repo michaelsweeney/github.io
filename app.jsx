@@ -48,21 +48,23 @@ const makeStyles = (props) => {
     },
     headerLeft: {
       display: "inline-block",
-      width: isMedium ? "calc(100% - 80px)" : "100%",
+      // width: isMedium ? "calc(100% - 80px)" : "100%",
     },
     headerRight: {
       textAlign: isMedium ? "right" : "center",
       verticalAlign: "top",
       position: "relative",
+      float: isMedium ? "right" : undefined,
+      right: 0,
       top: isMedium ? 25 : 0,
-      display: "inline-block",
-      width: "80px",
+      display: isMedium ? "inline-block" : "block",
+      // width: "400px",
       color: colors.primary,
     },
     title1: {
       fontSize: isMedium ? "42px" : "36px",
       fontFamily: "Montserrat-Bold, sans-serif",
-      margin: "15 0 15 0",
+      margin: isMedium ? "15 0 15 0" : "10 0 5 0",
       letterSpacing: isMedium ? 4 : 2,
       color: colors.primary,
     },
@@ -78,6 +80,7 @@ const makeStyles = (props) => {
       fontFamily: "Montserrat-Bold, sans-serif",
       fontSize: 18,
       margin: "10 0 10 0",
+      textAlign: isMedium ? "left" : "center",
       color: colors.primary,
     },
     card: {
@@ -104,7 +107,7 @@ const makeStyles = (props) => {
       textDecoration: "none",
       color: colors.gray,
       cursor: "pointer",
-      padding: "10 10 10 10",
+      // padding: "10 10 10 10",
       transition: "background-color 250ms, color 250ms, font-weight 250ms",
     },
     linkTextHover: {
@@ -112,10 +115,10 @@ const makeStyles = (props) => {
       textDecoration: "underline",
     },
     navText: {
-      display: "inline-block",
+      display: isMedium ? "inline-block" : "inline-block",
       color: colors.gray,
       cursor: "pointer",
-      margin: isMedium ? "0 0 0 0 " : "0 0 0 0",
+      margin: isMedium ? "0 5 0 5 " : "0 15 0 15",
       padding: isMedium ? "10 10 10 10" : "10 10 10 10",
       transition: "background-color 250ms, color 250ms",
     },
@@ -124,11 +127,11 @@ const makeStyles = (props) => {
       // color: colors.white,
     },
     navTextActive: {
-      backgroundColor: colors.primary,
-      color: "white",
+      backgroundColor: isMedium ? colors.primary : colors.primary,
+      color: isMedium ? "white" : "white",
     },
     navTextActiveHover: {
-      backgroundColor: "blue",
+      // backgroundColor: "red,
     },
     aboutContainer: {
       display: activeNav == "about" ? "block" : "none",
@@ -152,7 +155,7 @@ const makeStyles = (props) => {
 const About = (props) => {
   const { styles } = props;
   const copy =
-    "Building data scientist, energy modeler and software enthusiast with 14 years of \
+    "I'm a building data scientist, energy modeler and software enthusiast with 14 years of \
     experience in the built environment. Proficient in multiple programming languages \
     and modeling engines. Passionate about Python, open-source code, energy modeling, \
     RTEM, and using data and modeling to communicate difficult problems to non-technical \
@@ -391,8 +394,8 @@ const ProjectsContainer = (props) => {
 };
 
 const App = () => {
-  const breakpoint = 650;
-  const isSmall = useMediaQuery(`screen and (max-width: ${breakpoint}px)`);
+  const breakpoint = 775;
+  const isSmall = useMediaQuery(`(max-width: ${breakpoint}px)`);
   const isMedium = useMediaQuery(`screen and (min-width: ${breakpoint}px)`);
 
   const [activeNav, setActiveNav] = React.useState("about");
