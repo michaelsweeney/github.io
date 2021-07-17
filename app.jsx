@@ -12,7 +12,7 @@ const useMediaQuery = (query) => {
 
 const colors = {
   primary: "rgba(0,63,92,1)",
-  primaryLight: "rgba(0,63,92,0.1)",
+  primaryLight: "rgba(0,63,92,0.2)",
   secondary: "#58508d",
   gray: "rgba(0,0,0,0.7)",
   white: "rgba(255,255,255)",
@@ -83,6 +83,9 @@ const makeStyles = (props) => {
       textAlign: isMedium ? "left" : "center",
       color: colors.primary,
     },
+    title3Contact: {
+      textAlign: "center",
+    },
     card: {
       border: `1px solid ${colors.gray}`,
       padding: 15,
@@ -107,7 +110,7 @@ const makeStyles = (props) => {
       textDecoration: "none",
       color: colors.gray,
       cursor: "pointer",
-      margin: isSmall ? "10 0 10 0" : "0 0 0 0",
+      margin: isSmall ? "10 0 10 0" : "20 0 20 0",
       // padding: "10 10 10 10",
       transition: "background-color 250ms, color 250ms, font-weight 250ms",
     },
@@ -143,11 +146,12 @@ const makeStyles = (props) => {
       margin: "0 0 30 0",
     },
     contactContainer: {
+      textAlign: "center !important",
       display: activeNav == "contact" ? "block" : "none",
       margin: "0 0 30 0",
     },
     contactLinksContainer: {
-      textAlign: isSmall ? "center" : "left",
+      textAlign: isSmall ? "center" : "center",
     },
     cardsContainer: {},
   };
@@ -279,7 +283,9 @@ const Contact = (props) => {
 
   return (
     <div style={styles.contactContainer}>
-      <div style={styles.title3}>CONTACT ME</div>
+      <div style={{ ...styles.title3, ...styles.title3Contact }}>
+        CONTACT ME
+      </div>
 
       <div style={styles.contactLinksContainer}>
         {links.map((d, i) => (
