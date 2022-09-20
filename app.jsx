@@ -166,7 +166,7 @@ const makeStyles = (props) => {
 const About = (props) => {
   const { styles } = props;
   const copy =
-    "I'm a building data scientist, energy modeler and software enthusiast with 14 years of \
+    "I'm a building data scientist, energy modeler and R&D specialist with 14 years of \
     experience in the built environment. Proficient in multiple programming languages \
     and modeling engines. Passionate about Python, open-source code, energy modeling, \
     RTEM, and using data and modeling to communicate difficult problems to non-technical \
@@ -273,10 +273,6 @@ const Contact = (props) => {
   const { styles } = props;
   const links = [
     {
-      text: "Resume",
-      href: "https://www.dropbox.com/s/kydr3esaexbe1um/MS%20Resume.pdf?dl=1",
-    },
-    {
       text: "Github",
       href: "https://github.com/michaelsweeney",
     },
@@ -347,6 +343,24 @@ const ProjectsContainer = (props) => {
 
   const projects = [
     {
+      title: "2022 RTEM Hackathon Winner",
+      url: "https://be-exchange.org/nyserda-rtem-hackathon-demo-day/",
+      description:
+        "Developed a system for categorizing buildings in NYSERDA's \
+      RTEM database according to their readiness for heating electrification.\
+      Submission won first place in the Use Case Innovation category.\
+      ",
+    },
+    {
+      title: "BERDO 2.0 Carbon Calculator",
+      url: "http://akf-berdo-calculator-beta.herokuapp.com/",
+      description:
+        "Expanded on the NYC LL97 Carbon Calculator to create a similar \
+        tool for Boston's recent BERDO 2.0 legislation, also including \
+        automatic lookups for multiple years of building benchmarking data.",
+      image: "",
+    },
+    {
       title: "NYC LL97 Carbon Calculator",
       url: "https://be-exchange.org/calculator",
       description:
@@ -365,7 +379,7 @@ const ProjectsContainer = (props) => {
       image: "",
     },
     {
-      title: "NYSERDA PropTech Tenant Energy Challenge",
+      title: "2021 NYSERDA PropTech Tenant Energy Challenge",
       url: "https://github.com/michaelsweeney/nyserdaproptech",
       description:
         "Developed a Machine Learning algorithm to predict \
